@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <input type="number" class="form-control" #hotel_id [value]="hotel.hotel_id" placeholder="Enter Hotel Id">
+  
+      <input type="text" class="form-control" #hotel_name [value]="hotel.hotel_name" placeholder="Enter Hotel Name">
+  
+      <input type="text" class="form-control" #owner_name [value]="hotel.owner_name" placeholder="Enter Owner Name">
+  
+      <input type="text" class="form-control" #mo_no [value]="hotel.mo_no" placeholder="Enter Mobile Number" appContactdirective>
+  
+      <input type="text" class="form-control" #email  [value]="hotel.email" placeholder="Enter Email Id">
+  
+      <input type="radio" class="form-contol"#star name="star_cat" [checked]="hotel.star_cat=='star-1'" value="star-1">star-1
+      <input type="radio" class="form-contol" #star1 name="star_cat" [checked]="hotel.star_cat=='star-2'" value="star-2">star-2
+      <input type="radio" class="form-contol" #star2 name="star_cat"  [checked]="hotel.star_cat=='star-3'" value="star-3">star-3<br />
+  
+      <select #owner_type class="form-control" >
+          <option>Select</option>
+          <option [selected]="hotel.owner_type=='owned'">owned</option>
+          <option [selected]="hotel.owner_type=='leased'">leased</option>
+          <option [selected]="hotel.owner_type=='managed'">managed</option>
+      </select>
+      <input type="text" class="form-control" #city [value]="hotel.city" placeholder="Enter City">
+      <input type="number" class="form-control" #pincode [value]="hotel.pincode" placeholder="Enter Pin Code" appPincodedirective>
+  
+      <button class="btn btn-primary" (click)="onSave(
+        hotel_id.value,
+        hotel_name.value,
+        owner_name.value,
+        mo_no.value,
+        email.value,
+        star.checked?star.value:star1.checked?star1.value:star2.checked?star2.value:null,
+        owner_type.value,
+        city.value,
+        pincode.value
+      )">Add Hotel</button>
+    </div>
+  </div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <input type="text" placeholder="Search Here..." #searchdata (keyup)=0>
+    <input type="radio" #byhotel name="search" value="byHotel"> Hotel
+    <input type="radio" #byowner name="search" value="byOwner"> Owner
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Hotel Id</th>
+      <th>Hotel Name</th>
+      <th>Owner Name</th>
+      <th>Mobile No</th>
+      <th>Email-Id</th>
+      <th>Star-Category</th>
+      <th>Owner Type</th>
+      <th>City</th>
+      <th>Pincode</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <thead>
+    <tr *ngFor="let item of arrdata | searcpipe:searchdata.value:byhotel.checked ? byhotel.value:byowner.checked ? byowner.value:null">
+      <td>{{item.hotel_id}}</td>
+      <td>{{item.hotel_name | uppercase}}</td>
+      <td>{{item.owner_name}}</td>
+      <td>{{item.mo_no}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.star_cat}}</td>
+      <td><span [ngClass]="{ownedtype: item.owner_type=='owned',leasedtype: item.owner_type=='leased',managedtype: item.owner_type=='managed'}">{{item.owner_type}}</span></td>
+      <td>{{item.city}}</td>
+      <td>{{item.pincode}}</td>
+      <td><button (click)="onDelHotel(item)" class="btn btn-danger">Delete</button> | 
+      <button (click)="onUpdateHotel(item)" class="btn btn-success">Update</button></td>
+    </tr>
+  </thead>
+</table>
